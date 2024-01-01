@@ -1,7 +1,4 @@
-import requests
+from my_open_meteo_functions import get_weather
 
-def get_weather(lat, lng):
-    url = "https://api.open-meteo.com/v1/forecast?latitude=" + str(lat) + "&longitude=" + str(lng) + "&hourly=weathercode&forecast_days=1&timezone=Asia%2FTokyo"
-    weather_today = requests.get(url).json()
-
-    return(weather_today)
+weather = get_weather(35.0, 150.0)
+print(weather)
