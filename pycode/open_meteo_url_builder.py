@@ -68,9 +68,9 @@ class MeteoURLBuilder: # easily created, not completed fully.
 def main():
     murlbld = MeteoURLBuilder(150.0, 35.0)
     murlbld.addHourlyParameter("temperature_2m")
-    print("t")
+    #print("t")
     murlbld.addHourlyParameter("weather_code")
-    print("w")
+    #print("w")
     url = murlbld.buildUrl()
     print(url)
 
