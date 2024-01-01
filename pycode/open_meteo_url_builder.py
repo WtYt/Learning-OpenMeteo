@@ -65,10 +65,14 @@ class MeteoURLBuilder: # easily created, not completed fully.
                     url += ","
         return url
 
-murlbld = MeteoURLBuilder(150.0, 35.0)
-murlbld.addHourlyParameter("temperature_2m")
-print("t")
-murlbld.addHourlyParameter("weather_code")
-print("w")
-url = murlbld.buildUrl()
-print(url)
+def main():
+    murlbld = MeteoURLBuilder(150.0, 35.0)
+    murlbld.addHourlyParameter("temperature_2m")
+    print("t")
+    murlbld.addHourlyParameter("weather_code")
+    print("w")
+    url = murlbld.buildUrl()
+    print(url)
+
+if __name__ == "__main__":
+    main()
