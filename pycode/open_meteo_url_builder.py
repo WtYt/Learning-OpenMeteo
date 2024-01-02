@@ -131,6 +131,8 @@ def code2WeatherJP(code:int) -> str:
         return "雹を伴う雷雨"
     elif code == 99:
         return "票を伴う激しい雷雨"
+    else:
+        return "未定義"
 
 def main():
     word = "江東区"
