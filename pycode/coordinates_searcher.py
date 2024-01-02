@@ -1,13 +1,29 @@
 import requests
+import re
 
-def get_coordinates(location:str):
-    url = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=" + location
-    coordinates = requests.get(url).json()
-
+# get location name, return [latitude, longitude, fullname]
+def get_coordinates(name:str):
+    url = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=" + name
+    locations = requests.get(url).json()
+    if not locations:
+        return[float("nan"), float("nan"), "not found"]
+    title_list = [location["properties"]["title"] for location in locations]
+    p = re.compile(r'.*'+name+"$")
+    index = 0
+    for title in title_list:
+        if p.match(title):
+            break
+        index += 1
+    if index == len(title_list):
+        return[float("nan"), float("nan"), "not found"]
+    coordinates = [locations[index]["geometry"]["coordinates"][1],
+                   locations[index]["geometry"]["coordinates"][0],
+                   locations[index]["properties"]["title"]
+                  ]
     return(coordinates)
 
 def main():
-    coo_list = get_coordinates("江戸川区")
+    coo_list = get_coordinates("渋谷１０９")
     print(coo_list)
 if __name__ == '__main__':
     main()
