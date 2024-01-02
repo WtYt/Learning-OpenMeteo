@@ -74,6 +74,64 @@ class MeteoURLBuilder: # easily created, not completed fully.
             url += "&timezone=" + self.timezone
         return url
 
+def code2WeatherJP(code:int) -> str:
+    if   code == 0:
+        return "快晴"
+    elif code == 1:
+        return "晴れ"
+    elif code == 2:
+        return "時々曇り"
+    elif code == 3:
+        return "曇り"
+    elif code == 45:
+        return "霧"
+    elif code == 48:
+        return "霧氷"
+    elif code == 51:
+        return "薄い霧雨"
+    elif code == 53:
+        return "霧雨"
+    elif code == 55:
+        return "濃い霧雨"
+    elif code == 56:
+        return "氷点下の薄い霧雨"
+    elif code == 57:
+        return "氷点下の濃い霧雨"
+    elif code == 61:
+        return "弱い雨"
+    elif code == 63:
+        return "雨"
+    elif code == 65:
+        return "激しい雨"
+    elif code == 66:
+        return "氷点下の弱い雨"
+    elif code == 67:
+        return "氷点下の激しい雨"
+    elif code == 71:
+        return "弱い雪"
+    elif code == 73:
+        return "雪"
+    elif code == 75:
+        return "激しい雪"
+    elif code == 77:
+        return "霧雪"
+    elif code == 80:
+        return "弱いにわか雨"
+    elif code == 81:
+        return "にわか雨"
+    elif code == 82:
+        return "激しいにわか雨"
+    elif code == 85:
+        return "弱いにわか雪"
+    elif code == 86:
+        return "激しいにわか雪"
+    elif code == 95:
+        return "雷雨"
+    elif code == 96:
+        return "雹を伴う雷雨"
+    elif code == 99:
+        return "票を伴う激しい雷雨"
+
 def main():
     word = "江東区"
     coordinates = csrch.get_coordinates(word)
