@@ -9,7 +9,7 @@ class MeteoURLBuilder: # easily created, not completed fully.
         self.hourly_parameters  = []    # should create Parameter class?
         self.daily_parameters   = []
         self.current_parameters = []
-        self.timezone           = None            # unused
+        self.timezone           = None
 
     def __init__(self, x:float, y:float):
         self.url = "https://api.open-meteo.com/v1/forecast"
@@ -18,13 +18,16 @@ class MeteoURLBuilder: # easily created, not completed fully.
         self.hourly_parameters  = []
         self.daily_parameters   = []
         self.current_parameters = []
-        self.timezone           = None            # unused
+        self.timezone           = None
 
     def setLongitude(self, x:float):
         self.longitude = x
 
     def setLatitude(self, y:float):
         self.latitude  = y
+
+    def setTimeZone(self, timezone:str):
+        self.timezone = timezone
 
     def addParameter(self, parameter:str): # unused. useful for generalization?
         pass
@@ -47,22 +50,27 @@ class MeteoURLBuilder: # easily created, not completed fully.
             i = 1
             for parameter in self.hourly_parameters:
                 url += parameter
-                if i != len(self.hourly_parameters):
+                if i < len(self.hourly_parameters):
                     url += ","
+                i += 1
         if self.daily_parameters:
             url += "&daily="
             i = 1
             for parameter in self.daily_parameters:
                 url += parameter
-                if i != len(self.daily_parameters):
+                if i < len(self.daily_parameters):
                     url += ","
+                i += 1
         if self.current_parameters:
             url += "&current="
             i = 1
             for parameter in self.current_parameters:
                 url += parameter
-                if i != len(self.current_parameters):
+                if i < len(self.current_parameters):
                     url += ","
+                i += 1
+        if self.timezone:
+            url += "&timezone=" + self.timezone
         return url
 
 def main():
@@ -71,6 +79,7 @@ def main():
     #print("t")
     murlbld.addHourlyParameter("weather_code")
     #print("w")
+    murlbld.setTimeZone("Asia%2FTokyo")
     url = murlbld.buildUrl()
     print(url)
 
