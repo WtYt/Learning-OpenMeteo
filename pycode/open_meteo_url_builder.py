@@ -1,4 +1,5 @@
 import math
+import coordinates_searcher as csrch
 
 class MeteoURLBuilder: # easily created, not completed fully.
 
@@ -74,7 +75,10 @@ class MeteoURLBuilder: # easily created, not completed fully.
         return url
 
 def main():
-    murlbld = MeteoURLBuilder(150.0, 35.0)
+    word = "江東区"
+    coordinates = csrch.get_coordinates(word)
+    print(word + "->" + coordinates[2])
+    murlbld = MeteoURLBuilder(coordinates[0], coordinates[1])
     murlbld.addHourlyParameter("temperature_2m")
     #print("t")
     murlbld.addHourlyParameter("weather_code")

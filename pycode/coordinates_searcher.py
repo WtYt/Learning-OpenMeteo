@@ -16,14 +16,20 @@ def get_coordinates(name:str):
         index += 1
     if index == len(title_list):
         return[float("nan"), float("nan"), "not found"]
-    coordinates = [locations[index]["geometry"]["coordinates"][1],
-                   locations[index]["geometry"]["coordinates"][0],
+    coordinates = [locations[index]["geometry"]["coordinates"][0],
+                   locations[index]["geometry"]["coordinates"][1],
                    locations[index]["properties"]["title"]
                   ]
     return(coordinates)
 
 def main():
-    coo_list = get_coordinates("渋谷１０９")
-    print(coo_list)
+    coordinates = get_coordinates("豊洲キャンパス")
+    print(coordinates)
+    coordinates = get_coordinates("熊谷高等学校")
+    print(coordinates)
+    coordinates = get_coordinates("ユニバーサル・スタジオ・ジャパン")
+    print(coordinates)
+    coordinates = get_coordinates("ディズニーランド")
+    print(coordinates)
 if __name__ == '__main__':
     main()
